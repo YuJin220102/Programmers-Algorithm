@@ -1,0 +1,16 @@
+class Solution {
+    public String solution(String[] seoul) {
+        String[] arr = seoul;
+        String answer = "";
+        
+        // 문자열 비교는 equals() 메소드와 == 비교 연산자가 있음
+        // equals()는 객체끼리 내용 비교
+        // ==는 주소의 값 비교 
+        for(int i = 0; i < seoul.length; i++){
+            if(seoul[i].equals("Kim")){
+                answer = "김서방은 " + i + "에 있다";
+            }
+        }
+        return answer;
+    }
+}
