@@ -1,0 +1,23 @@
+class Solution {
+    // 1이상 8000000 미만인 정수 -> long으로 변경
+    public int solution(long num) {
+        int answer = 0;
+        
+        // while문으로 입력된 수가 1이 될때까지 반복
+        // while문 조건은 true일때만 실행
+        while(num != 1){
+            if(num % 2 == 0){
+                num /= 2;
+                answer++;
+            }
+            else{
+                num = (num * 3) + 1;
+                answer++;
+            }
+            if(answer == 500){
+                return answer = -1;
+            }
+        }
+        return answer;
+    }
+}
