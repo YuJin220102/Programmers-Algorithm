@@ -1,0 +1,62 @@
+class Solution {
+    public int solution(String dartResult) {
+        
+        int answer = 0;
+        // 1, 2, 3라운드 점수 저장 배열
+        int[] arr = new int[3];
+        int index = -1;
+// 숫자 넣기
+        for(int i = 0; i < dartResult.length(); i++){
+            // 0 ~ 10 사이일 때
+             if('0' <= dartResult.charAt(i) && dartResult.charAt(i) <= '9'){
+                 // 10일 때
+                 if(dartResult.charAt(i) == '1' && dartResult.charAt(i + 1) == '0')continue;
+                 // 10 연속으로 나올 수 있기에 continue 밑에 해줘야함
+                 if(index < 2) index++;
+                 // i가 0일때는 dartResult.charAt(i)가 '0'이 맞지만 (i - 1)을 할 수 없기에 런타임 에러 발생
+                 // i != 0 && 을 추가하여 런타임 에러 해결
+                 if(i != 0 && dartResult.charAt(i) == '0' && dartResult.charAt(i - 1) == '1'){
+                     arr[index] = 10;
+                 }
+            // 1 ~ 9 사이일 때
+                else{
+                // string이기 때문에 int형으로 변경하여 저장
+                    arr[index] = Character.getNumericValue(dartResult.charAt(i));
+                }
+             }
+// * # S D T 계산
+            else{
+                if(dartResult.charAt(i) == 'S'){
+                    arr[index] = (int)Math.pow(arr[index], 1);
+                }
+                if(dartResult.charAt(i) == 'D'){
+                    arr[index] = (int)Math.pow(arr[index], 2);
+                }
+                if(dartResult.charAt(i) == 'T'){
+                    arr[index] = (int)Math.pow(arr[index], 3);
+                }
+                if(dartResult.charAt(i) == '#' || dartResult.charAt(i) == '*'){
+                    if(dartResult.charAt(i) == '#'){
+                        arr[index] *= -1;
+                    }
+                    else{
+                        // index가 0일때는 첫번째만 2배해줌
+                        if(index == 0){
+                            arr[index] *= 2;
+                        }
+                        else{
+                            arr[index - 1] *= 2;
+                            arr[index] *= 2;
+                        }
+                    }
+                }
+            }
+        }
+        // 각 라운드 점수 더하기
+        for(int i = 0; i < arr.length; i++){
+            answer += arr[i];
+        }
+        
+        return answer;
+    }
+}
