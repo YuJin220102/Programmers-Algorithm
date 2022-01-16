@@ -1,0 +1,18 @@
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        
+        // 짝수라면
+        if(s.length() % 2 == 0){
+            answer += s.charAt((int)(s.length()/2 - 1));
+            answer += s.charAt((int)(s.length()/2));
+        }
+        // 홀수라면
+        else{
+            // (int) 강제 형 변환으로 소수점 버리기
+            answer += s.charAt((int)(s.length()/2));
+        }
+        
+        return answer;
+    }
+}
