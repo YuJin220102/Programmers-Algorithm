@@ -1,0 +1,34 @@
+import java.util.*;
+class Solution {
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[n];
+        // 2진수 변환 Integer.toBinaryString
+        
+        for(int i = 0; i < n; i++){
+            // 2진수로 변환, n의 길이만큼 0을 채워주기 위해 StringBuffer 사용
+            StringBuffer Binary1 = new StringBuffer(Integer.toBinaryString(arr1[i]));
+		    StringBuffer Binary2 = new StringBuffer(Integer.toBinaryString(arr2[i]));
+            answer[i] = "";
+            
+            //repeat 문자열 곱하기
+            if(Binary1.length() != n){
+		        Binary1.insert(0, "0".repeat(n - Binary1.length()));
+		    }
+		    if(Binary2.length() != n){
+	        	Binary2.insert(0, "0".repeat(n - Binary2.length()));
+		    } 
+            
+            // 벽 찾기
+            for(int j = 0; j < n; j++){
+		        // 1일 때 (벽)
+		        if(Binary1.charAt(j) == '1' || Binary2.charAt(j) == '1'){
+		            answer[i] += "#";
+		        }
+	            else{
+		            answer[i] += " ";
+		        }
+		    } 
+        }
+        return answer;
+    }
+}
