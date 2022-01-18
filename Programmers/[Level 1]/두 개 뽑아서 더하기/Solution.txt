@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class Solution {
+    public int[] solution(int[] numbers) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        for(int i = 0; i < numbers.length; i++){
+            for(int j = 0; j < numbers.length; j++){
+                if(i == j) continue;
+                if(check(list, numbers[i] + numbers[j]) == true){
+                    list.add(numbers[i] + numbers[j]);
+                }
+            }
+        }
+    int[] answer = new int[list.size()];
+    
+    for(int i = 0; i < answer.length; i++){
+        answer[i] = list.get(i);
+    }
+        Arrays.sort(answer);
+    
+        return answer;
+        
+    }
+    public static boolean check(ArrayList<Integer> list,int num){
+        boolean bool = true;
+        int count = 0;
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i) == num) count++;
+        }
+        if(count == 0) bool = true;
+        else bool = false;
+        
+        return bool;
+    }
+}
