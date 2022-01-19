@@ -1,0 +1,24 @@
+import java.util.Arrays;
+class Solution {
+    public int solution(int[] d, long budget) {
+        int count = 0;
+        
+        Arrays.sort(d);
+       
+        // 배열 첫번째 수가 budget보다 큰 경우도 생각
+        if(budget >= d[count]) {
+        for(int i = 0; i < d.length; i++) {
+        	budget -= d[i];
+        	count = i;
+            if(budget == 0) {
+        		break;
+        	}
+            if(i < d.length - 1 && budget - d[i + 1] < 0) {
+        		break;
+        	}
+        }
+            return (count + 1);
+        }
+        else return count;
+    }
+}
