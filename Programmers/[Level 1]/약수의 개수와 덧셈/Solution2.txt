@@ -1,0 +1,15 @@
+class Solution {
+    public int solution(int left, int right) {
+        int answer = 0;
+        
+        // 제곱근 Math.sqrt()
+        // 만약 16이 있을때 4 * 4 = 16 중복된 약수 이므로 하나만 들어가게 된다.
+        // 그렇게 되면 약수의 개수는 홀수가 된다.
+        for(int i = left; i <= right; i++){
+            if(i % Math.sqrt(i) == 0) answer -= i;
+            else answer += i;
+        }
+        
+        return answer;
+    }
+}
