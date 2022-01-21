@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+class Solution {
+    public int solution(int[] nums) {
+        int answer = 0;
+        int leng = (nums.length / 2);
+        
+        Arrays.sort(nums);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        // 중복 제거
+        int count = 0;
+        for(int i = 0; i < nums.length; i++){
+        	if(count == 0) list.add(nums[i]);
+        	if(i < nums.length - 1 && nums[i] != nums[i + 1]) count = 0;	
+            if(i < nums.length - 1 && nums[i] == nums[i + 1]) count++;
+        }
+        if(list.size() >= leng) answer = leng;
+        else answer = list.size();
+        
+        return answer;
+    }
+}
