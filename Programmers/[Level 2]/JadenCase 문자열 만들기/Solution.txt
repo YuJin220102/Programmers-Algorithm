@@ -1,0 +1,23 @@
+class Solution {
+    public String solution(String s) {
+        StringBuilder answer = new StringBuilder();
+		String st = s.toLowerCase();
+		String str = st.charAt(0) + "";
+        
+		answer.append(str.toUpperCase());
+        
+        for(int i = 1; i < st.length(); i++){
+            String now = st.charAt(i) + "";
+            if(now.equals(" ")) {
+            	answer.append(" ");
+            }
+            else if(st.charAt(i - 1) == ' ') {
+            	answer.append(now.toUpperCase());
+            }
+            else {
+            	answer.append(now);
+            }       
+        }
+        return answer.toString();
+    }
+}
