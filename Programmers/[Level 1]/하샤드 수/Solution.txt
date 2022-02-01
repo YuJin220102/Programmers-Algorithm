@@ -1,0 +1,15 @@
+class Solution {
+    public boolean solution(int x) {
+        boolean answer = true;
+        int sum = 0;
+        String str = String.valueOf(x); // x값 문자열로 변환
+        
+        for(int i = 0; i < str.length(); i++){
+            // Integer.parseInt는 문자열만 정수로 변환 가능하다. (문자 안됨)
+            sum += Integer.parseInt(String.valueOf(str.charAt(i))); // 각 자릿수 더함
+        }
+        
+        if(x % sum == 0) return answer;
+        else return answer = false;
+    }
+}
