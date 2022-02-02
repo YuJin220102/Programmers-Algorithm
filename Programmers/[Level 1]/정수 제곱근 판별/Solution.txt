@@ -1,0 +1,14 @@
+import java.lang.Math;
+
+class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        // long으로 변환해 줘야함!
+        long a = (long)Math.sqrt(n);
+        
+        if((a * a) == n){
+            return (long)Math.pow((a + 1), 2);
+        }
+        return answer = -1;
+    }
+}
