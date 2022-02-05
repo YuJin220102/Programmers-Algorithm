@@ -1,0 +1,28 @@
+import java.util.Arrays;
+
+class Solution {
+    public long solution(long n) {
+         // 정수를 문자열로, valueOf는 null 값
+        String str = String.valueOf(n);
+        char [] arr = new char[str.length()];
+        long answer = 0; // 정수 반환 값
+        String subStr = ""; // 문자열 반환 값
+        
+        // 내림차순 하기 위해 배열로 변환
+        for(int i = 0; i < str.length(); i++){ 
+            arr[i] += str.charAt(i);
+        }
+        
+        Arrays.sort(arr); // 오름차순
+        
+        // 오름차순을 내림차순으로
+        for(int j = arr.length - 1; j >= 0; j--){
+            subStr += arr[j];
+        }
+        
+        // type Long 변환
+        answer = Long.parseLong(subStr);
+        
+        return answer;
+    }
+}
