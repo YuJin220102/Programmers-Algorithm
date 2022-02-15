@@ -1,0 +1,46 @@
+import java.util.Stack;
+
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(0);
+        
+        for(int i : moves) {
+            for(int j = 0; j < board.length; j++) {
+                if(board[j][i - 1] != 0) {
+                    if(stack.peek() == board[j][i - 1]) {
+                        stack.pop();
+					    answer += 2;
+                    }
+                    else {
+                        stack.push(board[j][i - 1]);
+                    }
+                    board[j][i - 1] = 0;
+                    break;
+                }
+            }
+        }
+        return answer;
+    }
+}
+/*
+  1. N x N크기의 정사각형
+  2. 같은 인형이 바구니에 쌓으면 같은 인형 2개 없어짐
+  3. 인형 없는 곳에 크레인 작동 시 아무일도 일어나지 않음
+  4. 사라진 인형의 개수를 리턴
+  5. 각 숫자는 1~100
+  6. 0은 빈칸
+  
+  board = {{0,0,0,0,0},{0,0,1,0,3},{0,2,5,0,1},{4,2,4,4,2},{3,5,1,3,1}}
+  moves = {1,5,3,5,1,2,1,4}
+  4, 3, 1, 1, 3, 2, x, 4 -> (1, 1), (3, 3) -> 4개
+  
+  Stack : 나중에 들어간 것이 먼저 나옴
+  stack.push(int a) : 값 추가
+  stack.pop() : 값 제거
+  stack.peek() : 가장 상단의 값 출력
+  stack.size() : stack 의 크기
+  stack.empty() : stack이 비어있는지 체크, 비어있으면 true
+  stack.contains(1) : stack에 1이 있는지 체크, 있으면 true
+ */
