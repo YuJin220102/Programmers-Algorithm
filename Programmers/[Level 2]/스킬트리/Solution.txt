@@ -1,0 +1,23 @@
+class Solution {
+    public int solution(String skill, String[] skill_trees) {
+		int answer = 0;
+		
+		for(int i = 0; i < skill_trees.length; i++) {
+			String str = "";
+			for(int j = 0; j < skill_trees[i].length(); j++) {
+				if(skill.contains(String.valueOf(skill_trees[i].charAt(j)))) {
+					str += skill_trees[i].charAt(j);
+				}
+				else {
+					continue;
+				}
+			}
+			String s = skill.substring(0,str.length());
+
+			if(s.equals(str)) {
+				answer++;
+			}
+		}
+        return answer;
+    }
+}
