@@ -1,0 +1,22 @@
+class Solution {
+    public boolean solution(String s) {
+        boolean answer = true;
+        
+        // 문자열 길이 4, 6인지 확인
+        if(s.length() == 4 || s.length() == 6){
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) >= '0' && s.charAt(i) <= '9'){ // 숫자 일때 true
+                continue;
+            }
+            else{ // 숫자 아닐 때
+                return answer = false; 
+            }
+        }
+        }
+        else{
+            return answer = false;
+        }
+        
+        return answer;
+    }
+}
