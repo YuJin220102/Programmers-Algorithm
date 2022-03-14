@@ -1,0 +1,39 @@
+// 수정 완료
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+        // 전체 수에서 도난당한 학생을 제외시켜
+		// 여벌을 가져온 학생들이 빌려줄 수 있는지 계산
+		int answer = n - lost.length;
+
+		// 여벌 체육복을 가지고 있는 학생이 도난당함
+		for (int i = 0; i < lost.length; i++) {
+			for (int j = 0; j < reserve.length; j++) {
+				if (lost[i] == reserve[j]) {
+					// 여벌을 가져왔으나 도난당해 자신만 쓸 수 있으므로 +1
+					// 도난 당한 학생들은 -1로
+					answer += 1;
+					lost[i] = -1;
+					reserve[j] = -1;
+					break;
+				}
+			}
+		}
+
+		// 체육복을 빌려줄 수 있는 경우
+		for (int i = 0; i < lost.length; i++) {
+			for (int j = 0; j < reserve.length; j++) {
+				if (lost[i] - 1 == reserve[j] || lost[i] + 1 == reserve[j]) {
+					answer += 1;
+					reserve[j] = -1;
+					break;
+				}
+			}
+		}
+        
+        return answer;
+    }
+}
