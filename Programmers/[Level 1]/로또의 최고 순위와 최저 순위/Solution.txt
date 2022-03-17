@@ -1,0 +1,30 @@
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = new int[2];
+		int[] win = {7, 6, 5, 4, 3, 2}; //순위
+		int max = 0, min = 0, num = 0;
+		
+		// 0의 갯수와 0을 제외한 맞춘 갯수 구하기 
+		for(int i : lottos) {
+			if(i == 0) num++;
+			for(int j = 0; j < win_nums.length; j++) {
+				if(i == win_nums[j]) {
+					max++;
+				}
+			}
+		}
+		// 0을 제외한 맞춘 갯수는 min, 0을 포함한 맞추 갯수는  max
+		min = max;
+		max += num;
+		
+		// 등수 찾기
+		for(int i = 1; i < win.length; i++) {
+			if(max == win[i]) answer[0] = i;
+			if(min == win[i]) answer[1] = i;
+		}
+        if(answer[0] == 0) answer[0] = 6;
+		if(answer[1] == 0) answer[1] = 6;
+        
+        return answer;
+    }
+}
