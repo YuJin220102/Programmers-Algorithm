@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+class Solution {
+    public String solution(String new_id) {
+        ArrayList<Character> list = new ArrayList<Character>();
+		// 1단계 : 소문지 치환
+		String new_id2 = new_id.toLowerCase();
+		
+		// 2단계 소문자, 숫자 -, _, . 을 제외한 문자 제거
+		for(int i = 0; i < new_id2.length(); i++) {
+			if((new_id2.charAt(i) >= 'a' && new_id2.charAt(i) <= 'z') ||
+					(new_id2.charAt(i) >= 0 && new_id2.charAt(i) <= 9) ||
+					(new_id2.charAt(i) == '-') || (new_id2.charAt(i) == '_') ||
+					(new_id2.charAt(i) == '.')) {
+					list.add(new_id2.charAt(i));
+					}
+		}
+		
+		ArrayList<Character> list2 = new ArrayList<Character>();
+		// 3단계 2연속 마침표 치환
+		for(int i = 0; i < list.size(); i++) {
+//			if(i == list.size() -1 && list.get(i) == '.' && list.get(i) == list.get(i + 1)) {
+//				continue;
+//			}
+			if(list.get(i) == '.' && list.get(i) == list.get(i + 1)) continue;
+			else list2.add(list.get(i));
+		}
+		
+//		System.out.println(list2);
+		
+		// 4단계 마침표 처음과 끝 제거
+		if(list2.get(0) == '.') list2.remove(0);
+		if(list2.get(list2.size() -1) == '.') list2.remove(list2.size() -1);
+		
+		// 5단계 빈 문자라면 a대입
+		if(list2.size() == 0) list2.add('a');
+		
+		ArrayList<Character> list3 = new ArrayList<Character>();
+		// 6단계 15개의 길이만, 마침표 끝 .이면 제거
+		if(list2.size() > 16) {
+			for(int i = 0; i < 15; i++) {
+				list3.add(list2.get(i));
+			}
+			if(list3.get(list3.size() -1) == '.') list3.remove(list3.size() -1);
+		}
+		
+		// 7단계 길이가 2자 이하라면 3까지 반복
+		if(list3.size() < 3) {
+			for(int i = list3.size() - 1; i < 3; i++) {
+				list3.add(list.get(list3.size() -1));
+			}
+		}
+		String answer = "";
+		
+		for(int i = 0; i < list3.size(); i++) {
+			answer += list3.get(i);
+		}
+        return answer;
+    }
+}
