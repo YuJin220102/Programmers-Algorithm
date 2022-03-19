@@ -1,0 +1,15 @@
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        String[] sc = s.split(" ");
+        int min, max;
+        min = max = Integer.parseInt(sc[0]);
+	  
+	    for(int i = 1; i < sc.length; i++) {
+            min = Math.min(min , Integer.parseInt(sc[i]));
+		    max = Math.max(max , Integer.parseInt(sc[i]));
+	    }
+        
+        return answer = min + " " + max;
+    }
+}
